@@ -1,10 +1,12 @@
 package pl.coderslab.charity.web.controller;
 
+import org.springframework.stereotype.Controller;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.web.model.DonationModel;
 
 import java.util.logging.Logger;
 
+@Controller
 public class DonationController {
     private static final Logger LOGGER = Logger.getLogger(DonationController.class.getName());
 
@@ -14,8 +16,8 @@ public class DonationController {
         this.donationService = donationService;
     }
 
-    public void create(DonationModel donationModel){
-        LOGGER.info("create("+donationModel+")");
+    public void create(DonationModel donationModel) {
+        LOGGER.info("create(" + donationModel + ")");
         donationService.create(donationModel);
     }
 }

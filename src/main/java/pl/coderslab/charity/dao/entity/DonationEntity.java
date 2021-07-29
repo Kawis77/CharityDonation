@@ -1,8 +1,11 @@
 package pl.coderslab.charity.dao.entity;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,9 +20,16 @@ public class DonationEntity {
 
     @Column
     private Integer quantity;
-
     @ManyToMany
     private List<CategoryEntity> categoryEntity;
+
+    public List<CategoryEntity> getCategoryEntity() {
+        return categoryEntity;
+    }
+
+    public void setCategoryEntity(List<CategoryEntity> categoryEntity) {
+        this.categoryEntity = categoryEntity;
+    }
 
     @OneToOne     //tutaj musze poprawic relacje
     private InstitutionEntity institutionEntity;

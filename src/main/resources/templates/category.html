@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Zaznacz co chcesz oddać:</h1>
+<div>
+    <form action="/form/category" method="post">
+        <label for="categoryId">Kategoria</label>
+        <input id="categoryId" name="categoryId">
+        <button type="submit">Dalej...</button>
+    </form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Create new Song</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<h1>Create new Song</h1>-->
+<!--<div>-->
+<!--    <a th:href="@{/}" class="btn btn-success">Home Page</a>-->
+<!--</div>-->
+<!--<form method="POST" th:action="@{/category}" th:object="${categorylist}">-->
+<!--    <h4>Create new Song</h4>-->
+
+<!--    <a>Song chords</a>-->
+<!--    <div th:each="listcategory : ${categorylist}">-->
+<!--        <span th:text="${listcategory.name}"></span>-->
+<!--        <input type="checkbox"  th:value="${listcategory.id}" >-->
+<!--    </div>-->
+
+<!--    <button type="submit">Wyslij</button>-->
+
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
