@@ -1,18 +1,11 @@
 package pl.coderslab.charity.web.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.dao.entity.DonationEntity;
-import pl.coderslab.charity.dao.repository.CategoryRepository;
-import pl.coderslab.charity.service.CategoryService;
-import pl.coderslab.charity.service.DonationService;
+import pl.coderslab.charity.service.DonationFormService;
+import pl.coderslab.charity.web.model.DonationModel;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import static pl.coderslab.charity.web.controller.DonationFormController.*;
@@ -23,12 +16,16 @@ import static pl.coderslab.charity.web.controller.DonationFormController.*;
 public class DonationFormController {
     private static final Logger LOGGER = Logger.getLogger(DonationFormController.class.getName());
 
-
     static final String ATTRIBUTE_CATEGORY = "category";
     static final String ATTRIBUTE_QUNATITY = "quantity";
     static final String ATTRIBUTE_INSTITUTION = "institution";
     static final String ATTRIBUTE_DONATIONDETAILS = "donationDetails";
 
+    private final DonationFormService donationFormService;
+
+    public DonationFormController(DonationFormService donationFormService) {
+        this.donationFormService = donationFormService;
+    }
 
     @GetMapping(value = "/category")
     public String categoryView(ModelMap modelMap) {
@@ -64,29 +61,35 @@ public class DonationFormController {
         return "donationDetails";
     }
 
+    //    public String donationDetailsChoose(@RequestParam(name = "cityId") String cityId, @RequestParam(name = "zipCodeId") String zipCodeId,
+//                                        @RequestParam(name = "pickUpDateId") LocalDate pickUpDateId,
+//                                        @RequestParam(name = "pickUpTimeId") LocalTime pickUpTimeId,
+//                                        @RequestParam(name = "pickUpCommentId") String pickUpCommentId, ModelMap modelMap) {
     @PostMapping(value = "/donationdetails")
-    public String donationDeatilsChoose(@RequestParam(name = "cityId") String cityId, @RequestParam(name = "zipCodeId") String zipCodeId,
-                                        @RequestParam(name = "pickUpDateId") LocalDate pickUpDateId,
-                                        @RequestParam(name = "pickUpTimeId") LocalTime pickUpTimeId,
-                                        @RequestParam(name = "pickUpCommentId") String pickUpCommentId, ModelMap modelMap) {
-        LOGGER.info("institutionChoose()");
-        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, cityId);
-        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, zipCodeId);
-        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpDateId);
-        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpTimeId);
-        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpCommentId);
-        String institution = (String) modelMap.getAttribute(ATTRIBUTE_INSTITUTION);
-        LOGGER.info("chosen Institution: " + institution);
+    public String donationDetailsProvide(ModelMap modelMap, @ModelAttribute DonationModel donationModel) {
+        LOGGER.info("donationDetailsProvide(" + donationModel + ")");
+        String quantityAttribute = (String) modelMap.getAttribute(ATTRIBUTE_QUNATITY);
+        donationModel.setQuantity(Integer.valueOf(quantityAttribute));
+        LOGGER.info("donation Model : " + donationModel);
+        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, donationModel);
+        donationFormService.create(donationModel);
+
+//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, cityId);
+//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, zipCodeId);
+//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpDateId);
+//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpTimeId);
+//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpCommentId);
+//        String institution = (String) modelMap.getAttribute(ATTRIBUTE_INSTITUTION);
+//        LOGGER.info("Provide Details Donation: " + institution);
 
         return "endform";
     }
 
-    @GetMapping (value = "/endform")
+    @PostMapping(value = "/endform")
     public String endFormView(ModelMap modelMap) {
-        LOGGER.info("donationDetailsView()");
-        String donationDetails = (String) modelMap.getAttribute(ATTRIBUTE_DONATIONDETAILS);
+        LOGGER.info("endFormView()");
+        DonationModel donationDetails = (DonationModel) modelMap.getAttribute(ATTRIBUTE_DONATIONDETAILS);
         LOGGER.info("chosen donationDetails: " + donationDetails);
-
         return "category";
     }
 
