@@ -22,8 +22,6 @@ class DonationMapperTest {
         donationModel.setCity("Warszawa");
         donationModel.setStreet("Nadodrzanska");
         donationModel.setQuantity(20);
-        donationModel.setPckUpDate(LocalDate.now());
-        donationModel.setPickUpTime(LocalTime.now());
         donationModel.setPickUpComment("Jest ok");
 
 
@@ -37,8 +35,6 @@ class DonationMapperTest {
                 () -> Assertions.assertNotNull(donationEntity.getCity(), "City is null"),
                 () -> Assertions.assertNotNull(donationEntity.getStreet(), "Street is null"),
                 () -> Assertions.assertNotNull(donationEntity.getQuantity(), "Quantity is null"),
-                () -> Assertions.assertNotNull(donationEntity.getPckUpDate(), "PickUpDate is null"),
-                () -> Assertions.assertNotNull(donationEntity.getPickUpTime(), "PickUpTime is null"),
                 () -> Assertions.assertNotNull(donationEntity.getPickUpComment(), "PickUpComment is null")
 
         );
@@ -54,8 +50,6 @@ class DonationMapperTest {
         donationEntity.setCity("Warszawa");
         donationEntity.setStreet("Nadodrzanska");
         donationEntity.setQuantity(20);
-        donationEntity.setPckUpDate(LocalDate.now());
-        donationEntity.setPickUpTime(LocalTime.now());
         donationEntity.setPickUpComment("Jest ok");
 
 
@@ -70,8 +64,6 @@ class DonationMapperTest {
                 () -> Assertions.assertNotNull(donationModel.getCity(), "City is null"),
                 () -> Assertions.assertNotNull(donationModel.getStreet(), "Street is null"),
                 () -> Assertions.assertNotNull(donationModel.getQuantity(), "Quantity is null"),
-                () -> Assertions.assertNotNull(donationModel.getPckUpDate(), "PickUpDate is null"),
-                () -> Assertions.assertNotNull(donationModel.getPickUpTime(), "PickUpTime is null"),
                 () -> Assertions.assertNotNull(donationModel.getPickUpComment(), "PickUpComment is null")
         );
 

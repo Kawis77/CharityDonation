@@ -24,6 +24,7 @@ public class DonationMapper {
         donationEntity.setPckUpDate(donationModel.getPckUpDate());
         donationEntity.setPickUpTime(donationModel.getPickUpTime());
         donationEntity.setPickUpComment(donationModel.getPickUpComment());
+        donationEntity.setZipCode(donationModel.getZipCode());
 
         return donationEntity;
     }
@@ -32,13 +33,14 @@ public class DonationMapper {
         DonationModel donationModel = new DonationModel();
         donationModel.setId(donationEntity.getId());
         donationModel.setQuantity(donationEntity.getQuantity());
-        donationModel.setCategoryEntity(donationEntity.getCategory());
+        donationModel.setCategoryEntity(donationEntity.getCategoryEntity());
         donationModel.setInstitutionEntity(donationEntity.getInstitution());
         donationModel.setStreet(donationEntity.getStreet());
         donationModel.setCity(donationEntity.getCity());
         donationModel.setPckUpDate(donationEntity.getPckUpDate());
         donationModel.setPickUpTime(donationEntity.getPickUpTime());
         donationModel.setPickUpComment(donationEntity.getPickUpComment());
+        donationModel.setZipCode(donationEntity.getZipCode());
         return donationModel;
 
     }

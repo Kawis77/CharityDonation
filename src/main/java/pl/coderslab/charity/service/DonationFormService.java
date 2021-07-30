@@ -6,6 +6,7 @@ import pl.coderslab.charity.dao.repository.DonationRepository;
 import pl.coderslab.charity.service.mapper.DonationMapper;
 import pl.coderslab.charity.web.model.DonationModel;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Service
@@ -25,6 +26,27 @@ public class DonationFormService {
         DonationEntity donationEntity = donationMapper.from(donationModel);
         donationRepository.save(donationEntity);
 
+    }
+
+    public Long count(DonationModel donationModel) {
+        LOGGER.info("Count donation");
+        DonationEntity donationEntity = donationMapper.from(donationModel);
+        Long count = donationRepository.count();
+        return count;
+
+    }
+
+    public List<DonationEntity> allDonation() {
+        return donationRepository.findAll();
+    }
+
+    public Integer countquantity() {
+       Integer count = 0;
+       for (DonationEntity donationEntity : allDonation()){
+           count += donationEntity.getQuantity();
+
+       }
+       return  count;
     }
 
 }

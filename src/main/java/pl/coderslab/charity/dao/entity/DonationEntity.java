@@ -1,11 +1,10 @@
 package pl.coderslab.charity.dao.entity;
 
-import lombok.ToString;
-
 import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -31,23 +30,21 @@ public class DonationEntity {
         this.categoryEntity = categoryEntity;
     }
 
-    @OneToOne     //tutaj musze poprawic relacje
+    @ManyToOne //tutaj musze poprawic relacje
     private InstitutionEntity institutionEntity;
 
     @Column(length = 200)
     private String street;
 
-
     private String city;
 
-    @Column(name = "ZIP_CODE")
     private String zipCode;
 
     @Column
-    private LocalDate pckUpDate;
+    private String pckUpDate;
 
     @Column
-    private LocalTime pickUpTime;
+    private String pickUpTime;
 
     @Column
     private String pickUpComment;
@@ -55,7 +52,7 @@ public class DonationEntity {
     public DonationEntity() {
     }
 
-    public DonationEntity(Long id, Integer quantity, List<CategoryEntity> categoryEntity, InstitutionEntity institutionEntity, String street, String city, String zipCode, LocalDate pckUpDate, LocalTime pickUpTime, String pickUpComment) {
+    public DonationEntity(Long id, Integer quantity, List<CategoryEntity> categoryEntity, InstitutionEntity institutionEntity, String street, String city, String zipCode, String pckUpDate, String pickUpTime, String pickUpComment) {
         this.id = id;
         this.quantity = quantity;
         this.categoryEntity = categoryEntity;
@@ -124,22 +121,6 @@ public class DonationEntity {
         this.zipCode = zipCode;
     }
 
-    public LocalDate getPckUpDate() {
-        return pckUpDate;
-    }
-
-    public void setPckUpDate(LocalDate pckUpDate) {
-        this.pckUpDate = pckUpDate;
-    }
-
-    public LocalTime getPickUpTime() {
-        return pickUpTime;
-    }
-
-    public void setPickUpTime(LocalTime pickUpTime) {
-        this.pickUpTime = pickUpTime;
-    }
-
     public String getPickUpComment() {
         return pickUpComment;
     }
@@ -148,5 +129,19 @@ public class DonationEntity {
         this.pickUpComment = pickUpComment;
     }
 
+    public String getPckUpDate() {
+        return pckUpDate;
+    }
 
+    public void setPckUpDate(String pckUpDate) {
+        this.pckUpDate = pckUpDate;
+    }
+
+    public String getPickUpTime() {
+        return pickUpTime;
+    }
+
+    public void setPickUpTime(String pickUpTime) {
+        this.pickUpTime = pickUpTime;
+    }
 }

@@ -7,4 +7,5 @@ import pl.coderslab.charity.web.model.DonationModel;
 public interface DonationRepository extends JpaRepository<DonationEntity, Long> {
 
     void deleteById(DonationModel donationModel1);
+
 }

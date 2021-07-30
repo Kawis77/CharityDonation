@@ -1,11 +1,17 @@
 package pl.coderslab.charity.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.dao.entity.CategoryEntity;
+import pl.coderslab.charity.dao.entity.InstitutionEntity;
 import pl.coderslab.charity.service.DonationFormService;
+import pl.coderslab.charity.web.model.CategoryModel;
 import pl.coderslab.charity.web.model.DonationModel;
 
+import java.nio.file.Watchable;
+import java.util.List;
 import java.util.logging.Logger;
 
 import static pl.coderslab.charity.web.controller.DonationFormController.*;
@@ -27,15 +33,30 @@ public class DonationFormController {
         this.donationFormService = donationFormService;
     }
 
+    @GetMapping(value = "/count")
+    public String countView(ModelMap modelMap , Model model , Integer count , DonationModel donationModel) {
+        LOGGER.info("categoryView()");
+        model.addAttribute("count" , donationFormService.count(donationModel));
+
+        return "count";
+    }
+
+    @GetMapping(value = "/countquantity")
+    public String categoryView(ModelMap modelMap , Model model) {
+        LOGGER.info("countQuantityView()");
+        model.addAttribute("countquantity" , donationFormService.countquantity());
+        return "countquantity";
+    }
+
     @GetMapping(value = "/category")
-    public String categoryView(ModelMap modelMap) {
+    public String categoryView(ModelMap modelMap , Model model , Integer count , DonationModel donationModel) {
         LOGGER.info("categoryView()");
         modelMap.addAttribute(ATTRIBUTE_CATEGORY, null);
         return "category";
     }
 
     @PostMapping(value = "/category")
-    public String categoryChoose(@RequestParam(name = "categoryId") String categoryId, ModelMap modelMap) {
+    public String categoryChoose(@RequestParam(name = "categoryId") List<String> categoryId, ModelMap modelMap) {
         LOGGER.info("categoryChoose()");
         modelMap.addAttribute(ATTRIBUTE_CATEGORY, categoryId);
         return "quantity";
@@ -45,8 +66,8 @@ public class DonationFormController {
     public String quantityChoose(@RequestParam(name = "quantityId") String quantityId, ModelMap modelMap) {
         LOGGER.info("quantityChoose()");
         modelMap.addAttribute(ATTRIBUTE_QUNATITY, quantityId);
-        String category = (String) modelMap.getAttribute(ATTRIBUTE_CATEGORY);
-        LOGGER.info("chosen category: " + category);
+//        String category =(String) modelMap.getAttribute(ATTRIBUTE_CATEGORY);
+//        LOGGER.info("chosen category: " + category);
 
         return "institution";
     }

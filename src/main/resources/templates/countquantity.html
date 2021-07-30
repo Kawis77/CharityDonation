@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liczba dotacji</title>
+</head>
+
+<body>
+<div>
+
+</div>
+<form method="POST" th:action="@{/quantquantity}" th:object="${countquantity}">
+
+
+    <a>Liczba dotacji</a>
+    <div th:each="count : ${countquantity}">
+        <span th:text="${count}"></span>
+    </div>
+
+
+</form>
+</body>
+</html>
