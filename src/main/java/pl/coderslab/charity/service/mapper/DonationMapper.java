@@ -51,4 +51,3 @@ public class DonationMapper {
     }
 
 }
-//Zaimplementowac metode from , i napisac do niej test jednostkowe.
