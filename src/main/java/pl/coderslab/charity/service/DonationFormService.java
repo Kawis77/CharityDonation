@@ -37,10 +37,12 @@ public class DonationFormService {
     }
 
     public List<DonationEntity> allDonation() {
+        LOGGER.info("Find All Donation");
         return donationRepository.findAll();
     }
 
     public Integer countquantity() {
+        LOGGER.info("Count quantity");
        Integer count = 0;
        for (DonationEntity donationEntity : allDonation()){
            count += donationEntity.getQuantity();
