@@ -4,13 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.dao.entity.CategoryEntity;
-import pl.coderslab.charity.dao.entity.InstitutionEntity;
+import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationFormService;
-import pl.coderslab.charity.web.model.CategoryModel;
+import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.web.model.DonationModel;
 
-import java.nio.file.Watchable;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,29 +26,19 @@ public class DonationFormController {
     static final String ATTRIBUTE_DONATIONDETAILS = "donationDetails";
 
     private final DonationFormService donationFormService;
+    private final CategoryService categoryService;
+    private final InstitutionService institutionService;
 
-    public DonationFormController(DonationFormService donationFormService) {
+    public DonationFormController(DonationFormService donationFormService, CategoryService categoryService, InstitutionService institutionService) {
         this.donationFormService = donationFormService;
-    }
-
-    @GetMapping(value = "/count")
-    public String countView(ModelMap modelMap , Model model , Integer count , DonationModel donationModel) {
-        LOGGER.info("categoryView()");
-        model.addAttribute("count" , donationFormService.count(donationModel));
-
-        return "count";
-    }
-
-    @GetMapping(value = "/countquantity")
-    public String categoryView(ModelMap modelMap , Model model) {
-        LOGGER.info("countQuantityView()");
-        model.addAttribute("countquantity" , donationFormService.countquantity());
-        return "countquantity";
+        this.categoryService = categoryService;
+        this.institutionService = institutionService;
     }
 
     @GetMapping(value = "/category")
-    public String categoryView(ModelMap modelMap , Model model , Integer count , DonationModel donationModel) {
+    public String categoryView(ModelMap modelMap , Model model) {
         LOGGER.info("categoryView()");
+        model.addAttribute("categoryfind" , categoryService.allCategory());
         modelMap.addAttribute(ATTRIBUTE_CATEGORY, null);
         return "category";
     }
@@ -63,9 +51,10 @@ public class DonationFormController {
     }
 
     @PostMapping(value = "/quantity")
-    public String quantityChoose(@RequestParam(name = "quantityId") String quantityId, ModelMap modelMap) {
+    public String quantityChoose(@RequestParam(name = "quantityId") String quantityId, ModelMap modelMap , Model model) {
         LOGGER.info("quantityChoose()");
         modelMap.addAttribute(ATTRIBUTE_QUNATITY, quantityId);
+        model.addAttribute("institutionfind", institutionService.allInstitution());
 //        String category =(String) modelMap.getAttribute(ATTRIBUTE_CATEGORY);
 //        LOGGER.info("chosen category: " + category);
 
@@ -94,7 +83,6 @@ public class DonationFormController {
         LOGGER.info("donation Model : " + donationModel);
         modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, donationModel);
         donationFormService.create(donationModel);
-
 //        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, cityId);
 //        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, zipCodeId);
 //        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpDateId);
@@ -102,7 +90,6 @@ public class DonationFormController {
 //        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpCommentId);
 //        String institution = (String) modelMap.getAttribute(ATTRIBUTE_INSTITUTION);
 //        LOGGER.info("Provide Details Donation: " + institution);
-
         return "endform";
     }
 

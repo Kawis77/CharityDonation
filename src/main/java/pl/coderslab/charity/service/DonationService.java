@@ -36,4 +36,27 @@ public class DonationService {
         return savedDonationModel;
     }
 
+    public Long count(DonationModel donationModel) {
+        LOGGER.info("Count donation");
+        DonationEntity donationEntity = donationMapper.from(donationModel);
+        Long count = donationRepository.count();
+        return count;
+
+    }
+
+    public List<DonationEntity> allDonation() {
+        LOGGER.info("Find All Donation");
+        return donationRepository.findAll();
+    }
+
+    public Integer countquantity() {
+        LOGGER.info("Count quantity");
+        Integer count = 0;
+        for (DonationEntity donationEntity : allDonation()){
+            count += donationEntity.getQuantity();
+
+        }
+        return  count;
+    }
+
 }

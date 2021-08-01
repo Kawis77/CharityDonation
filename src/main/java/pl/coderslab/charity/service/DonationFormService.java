@@ -1,6 +1,7 @@
 package pl.coderslab.charity.service;
 
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.dao.entity.CategoryEntity;
 import pl.coderslab.charity.dao.entity.DonationEntity;
 import pl.coderslab.charity.dao.repository.DonationRepository;
 import pl.coderslab.charity.service.mapper.DonationMapper;
@@ -28,27 +29,7 @@ public class DonationFormService {
 
     }
 
-    public Long count(DonationModel donationModel) {
-        LOGGER.info("Count donation");
-        DonationEntity donationEntity = donationMapper.from(donationModel);
-        Long count = donationRepository.count();
-        return count;
 
-    }
 
-    public List<DonationEntity> allDonation() {
-        LOGGER.info("Find All Donation");
-        return donationRepository.findAll();
-    }
-
-    public Integer countquantity() {
-        LOGGER.info("Count quantity");
-       Integer count = 0;
-       for (DonationEntity donationEntity : allDonation()){
-           count += donationEntity.getQuantity();
-
-       }
-       return  count;
-    }
 
 }

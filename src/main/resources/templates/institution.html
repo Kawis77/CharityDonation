@@ -1,17 +1,44 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Podaj instytucję</h1>-->
+<!--<div>-->
+<!--    <form action="/form/institution" method="post">-->
+<!--        <label for="institutionId">Liczba...</label>-->
+<!--        <input id="institutionId" name="institutionId">-->
+<!--        <button type="submit">Dalej...</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Institution</title>
 </head>
+
 <body>
-<h1>Podaj instytucję</h1>
+
 <div>
-    <form action="/form/institution" method="post">
-        <label for="institutionId">Liczba...</label>
-        <input id="institutionId" name="institutionId">
-        <button type="submit">Dalej...</button>
-    </form>
+
 </div>
+<form method="POST" th:action="@{/form/institution}" th:object="${institutionfind}">
+    <h4>Choose a institution</h4>
+
+    <a>Instytutcje:</a>
+    <div th:each="listinstitution : ${institutionfind}">
+        <span th:text="${listinstitution.name}"></span>
+        <input type="checkbox"  th:value="${listinstitution.id}" >
+    </div>
+
+    <button type="submit">Wyslij</button>
+
+</form>
 </body>
 </html>

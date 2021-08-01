@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class DonationEntity {
     @Column
     private Integer quantity;
     @ManyToMany
-    private List<CategoryEntity> categoryEntity;
+    private List<CategoryEntity> categoryEntity = new ArrayList<>();
 
     public List<CategoryEntity> getCategoryEntity() {
         return categoryEntity;
