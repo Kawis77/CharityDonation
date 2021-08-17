@@ -45,7 +45,6 @@ public class DonationFormController {
         List<CategoryEntity> allCategories = categoryService.allCategory();
         allCategories.sort(Comparator.comparing(CategoryEntity::getId));
         model.addAttribute("categories", allCategories);
-//        modelMap.addAttribute(ATTRIBUTE_CATEGORY, null);
         return "category";
     }
 
@@ -62,9 +61,6 @@ public class DonationFormController {
         LOGGER.info("quantityChoose()");
         modelMap.addAttribute(ATTRIBUTE_QUNATITY, quantityId);
         model.addAttribute("institutionfind", institutionService.allInstitution());
-
-//        LOGGER.info("chosen category: " + category);
-
         return "institution";
     }
 
@@ -74,14 +70,9 @@ public class DonationFormController {
         modelMap.addAttribute(ATTRIBUTE_INSTITUTION, institutionId);
         String quantity = (String) modelMap.getAttribute(ATTRIBUTE_QUNATITY);
         LOGGER.info("chosen Quantity: " + quantity);
-
         return "donationDetails";
     }
 
-    //    public String donationDetailsChoose(@RequestParam(name = "cityId") String cityId, @RequestParam(name = "zipCodeId") String zipCodeId,
-//                                        @RequestParam(name = "pickUpDateId") LocalDate pickUpDateId,
-//                                        @RequestParam(name = "pickUpTimeId") LocalTime pickUpTimeId,
-//                                        @RequestParam(name = "pickUpCommentId") String pickUpCommentId, ModelMap modelMap) {
     @PostMapping(value = "/donationdetails")
     public String donationDetailsProvide(ModelMap modelMap, @ModelAttribute DonationModel donationModel) {
         LOGGER.info("donationDetailsProvide(" + donationModel + ")");
@@ -106,13 +97,7 @@ public class DonationFormController {
         donationModel.setCategoryEntity(categoryEntities);
 
         donationFormService.create(donationModel);
-//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, cityId);
-//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, zipCodeId);
-//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpDateId);
-//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpTimeId);
-//        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, pickUpCommentId);
-//        String institution = (String) modelMap.getAttribute(ATTRIBUTE_INSTITUTION);
-//        LOGGER.info("Provide Details Donation: " + institution);
+
         return "endform";
     }
 
