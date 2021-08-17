@@ -9,12 +9,6 @@ import pl.coderslab.charity.web.model.DonationModel;
 @Component
 public class DonationMapper {
 
-    DonationRepository donationRepository;
-    CategoryService categoryService;
-
-
-
-
     public DonationEntity from(DonationModel donationModel) {
         DonationEntity donationEntity = new DonationEntity();
         donationEntity.setId(donationModel.getId());
@@ -47,7 +41,7 @@ public class DonationMapper {
 
     }
 
-    public DonationModel delete (DonationEntity donationEntity){
+    public DonationModel delete(DonationEntity donationEntity) {
         DonationModel donationModel = new DonationModel();
         donationModel.setId(donationEntity.getId());
         return donationModel;

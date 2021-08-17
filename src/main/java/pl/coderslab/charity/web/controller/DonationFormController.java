@@ -4,11 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.dao.entity.CategoryEntity;
+import pl.coderslab.charity.dao.entity.InstitutionEntity;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationFormService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.web.model.DonationModel;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -36,10 +40,12 @@ public class DonationFormController {
     }
 
     @GetMapping(value = "/category")
-    public String categoryView(ModelMap modelMap , Model model) {
+    public String categoryView(ModelMap modelMap, Model model) {
         LOGGER.info("categoryView()");
-        model.addAttribute("categoryfind" , categoryService.allCategory());
-        modelMap.addAttribute(ATTRIBUTE_CATEGORY, null);
+        List<CategoryEntity> allCategories = categoryService.allCategory();
+        allCategories.sort(Comparator.comparing(CategoryEntity::getId));
+        model.addAttribute("categories", allCategories);
+//        modelMap.addAttribute(ATTRIBUTE_CATEGORY, null);
         return "category";
     }
 
@@ -47,15 +53,16 @@ public class DonationFormController {
     public String categoryChoose(@RequestParam(name = "categoryId") List<String> categoryId, ModelMap modelMap) {
         LOGGER.info("categoryChoose()");
         modelMap.addAttribute(ATTRIBUTE_CATEGORY, categoryId);
+        LOGGER.info("chosen category: " + categoryId);
         return "quantity";
     }
 
     @PostMapping(value = "/quantity")
-    public String quantityChoose(@RequestParam(name = "quantityId") String quantityId, ModelMap modelMap , Model model) {
+    public String quantityChoose(@RequestParam(name = "quantityId") String quantityId, ModelMap modelMap, Model model) {
         LOGGER.info("quantityChoose()");
         modelMap.addAttribute(ATTRIBUTE_QUNATITY, quantityId);
         model.addAttribute("institutionfind", institutionService.allInstitution());
-//        String category =(String) modelMap.getAttribute(ATTRIBUTE_CATEGORY);
+
 //        LOGGER.info("chosen category: " + category);
 
         return "institution";
@@ -82,6 +89,22 @@ public class DonationFormController {
         donationModel.setQuantity(Integer.valueOf(quantityAttribute));
         LOGGER.info("donation Model : " + donationModel);
         modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, donationModel);
+
+        List<String> categories = (List<String>) modelMap.getAttribute(ATTRIBUTE_CATEGORY);
+
+        List<CategoryEntity> categoryEntities = new ArrayList<>();
+        for (String category : categories) {
+            CategoryEntity categoryEntity = categoryService.getById(Long.valueOf(category));
+            categoryEntities.add(categoryEntity);
+        }
+
+        String institutions = (String) modelMap.getAttribute(ATTRIBUTE_INSTITUTION);
+
+        InstitutionEntity institutionEntity = institutionService.getById(Long.valueOf(institutions));
+
+        donationModel.setInstitutionEntity(institutionEntity);
+        donationModel.setCategoryEntity(categoryEntities);
+
         donationFormService.create(donationModel);
 //        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, cityId);
 //        modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, zipCodeId);

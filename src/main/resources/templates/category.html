@@ -29,13 +29,15 @@
 <div>
 
 </div>
-<form method="POST" th:action="@{/form/category}" th:object="${categoryfind}">
+<form th:action="@{/form/category}" method="POST">
     <h4>Choose a category</h4>
 
     <a>Kategorie:</a>
-    <div th:each="listcategory : ${categoryfind}">
-        <span th:text="${listcategory.name}"></span>
-        <input type="checkbox"  th:value="${listcategory.id}" >
+    <div th:each="category : ${categories}">
+        <span th:text="${category.name}"></span>
+        <input type="checkbox" name="categoryId" th:value="${category.id}" >
+        <label th:for="categoryId"></label>
+<!--        <input id="categoryId" th:name="categoryId">-->
     </div>
 
     <button type="submit">Wyslij</button>

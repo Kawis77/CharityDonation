@@ -3,9 +3,7 @@ package pl.coderslab.charity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.dao.entity.CategoryEntity;
 import pl.coderslab.charity.dao.entity.DonationEntity;
-import pl.coderslab.charity.dao.repository.CategoryRepository;
 import pl.coderslab.charity.dao.repository.DonationRepository;
 import pl.coderslab.charity.service.mapper.DonationMapper;
 import pl.coderslab.charity.web.model.DonationModel;
@@ -27,7 +25,6 @@ public class DonationService {
     }
 
 
-
     public DonationModel create(DonationModel donationModel) {
         LOGGER.info("create(" + donationModel + ")");
         DonationEntity donationEntity = donationMapper.from(donationModel);
@@ -38,8 +35,8 @@ public class DonationService {
 
     public Long count(DonationModel donationModel) {
         LOGGER.info("Count donation");
-        DonationEntity donationEntity = donationMapper.from(donationModel);
-        Long count = donationRepository.count();
+//        DonationEntity donationEntity = donationMapper.from(donationModel);
+        Long count = donationRepository.sumQuantities();
         return count;
 
     }
@@ -49,14 +46,16 @@ public class DonationService {
         return donationRepository.findAll();
     }
 
-    public Integer countquantity() {
+    public Long sumQuantity() {
         LOGGER.info("Count quantity");
-        Integer count = 0;
-        for (DonationEntity donationEntity : allDonation()){
-            count += donationEntity.getQuantity();
+        return donationRepository.sumQuantities();
+//        Integer count = 0;
+//        for (DonationEntity donationEntity : allDonation()){
+//            count += donationEntity.getQuantity();
+//
+//        }
+//        return  count;
+//    }
 
-        }
-        return  count;
     }
-
 }

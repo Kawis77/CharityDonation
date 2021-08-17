@@ -34,7 +34,7 @@
     <a>Instytutcje:</a>
     <div th:each="listinstitution : ${institutionfind}">
         <span th:text="${listinstitution.name}"></span>
-        <input type="checkbox"  th:value="${listinstitution.id}" >
+        <input type="checkbox" name="institutionId" th:value="${listinstitution.id}" >
     </div>
 
     <button type="submit">Wyslij</button>

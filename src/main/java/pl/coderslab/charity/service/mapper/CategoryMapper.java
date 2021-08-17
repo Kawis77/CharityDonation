@@ -1,10 +1,9 @@
 package pl.coderslab.charity.service.mapper;
 
+import org.springframework.stereotype.Component;
 import pl.coderslab.charity.dao.entity.CategoryEntity;
-import pl.coderslab.charity.dao.entity.DonationEntity;
 import pl.coderslab.charity.web.model.CategoryModel;
-import pl.coderslab.charity.web.model.DonationModel;
-
+@Component
 public class CategoryMapper {
 
     public CategoryEntity from(CategoryModel categoryModel) {

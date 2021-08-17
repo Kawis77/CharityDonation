@@ -3,11 +3,6 @@ package pl.coderslab.charity.web.model;
 import lombok.Data;
 import pl.coderslab.charity.dao.entity.CategoryEntity;
 import pl.coderslab.charity.dao.entity.InstitutionEntity;
-
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 
 @Data
