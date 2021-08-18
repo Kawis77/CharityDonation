@@ -1,13 +1,12 @@
 package pl.coderslab.charity.service;
 
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.dao.entity.CategoryEntity;
 import pl.coderslab.charity.dao.entity.DonationEntity;
 import pl.coderslab.charity.dao.repository.DonationRepository;
 import pl.coderslab.charity.service.mapper.DonationMapper;
 import pl.coderslab.charity.web.model.DonationModel;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -29,7 +28,13 @@ public class DonationFormService {
 
     }
 
+    public void remove(Long id){
+        donationRepository.deleteById(id);
+    }
 
+    public Optional<DonationEntity> findById(Long id){
+        return donationRepository.findById(id);
+    }
 
 
 }

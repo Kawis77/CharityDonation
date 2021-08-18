@@ -12,6 +12,7 @@ import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.web.model.DonationModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -20,12 +21,12 @@ import static pl.coderslab.charity.web.controller.DonationFormController.*;
 
 @Controller
 @RequestMapping(value = "/form")
-@SessionAttributes(names = {ATTRIBUTE_CATEGORY, ATTRIBUTE_QUNATITY, ATTRIBUTE_INSTITUTION, ATTRIBUTE_DONATIONDETAILS})
+@SessionAttributes(names = {ATTRIBUTE_CATEGORY, ATTRIBUTE_QUANTITY, ATTRIBUTE_INSTITUTION, ATTRIBUTE_DONATIONDETAILS})
 public class DonationFormController {
     private static final Logger LOGGER = Logger.getLogger(DonationFormController.class.getName());
 
     static final String ATTRIBUTE_CATEGORY = "category";
-    static final String ATTRIBUTE_QUNATITY = "quantity";
+    static final String ATTRIBUTE_QUANTITY = "quantity";
     static final String ATTRIBUTE_INSTITUTION = "institution";
     static final String ATTRIBUTE_DONATIONDETAILS = "donationDetails";
 
@@ -59,7 +60,7 @@ public class DonationFormController {
     @PostMapping(value = "/quantity")
     public String quantityChoose(@RequestParam(name = "quantityId") String quantityId, ModelMap modelMap, Model model) {
         LOGGER.info("quantityChoose()");
-        modelMap.addAttribute(ATTRIBUTE_QUNATITY, quantityId);
+        modelMap.addAttribute(ATTRIBUTE_QUANTITY, quantityId);
         model.addAttribute("institutionfind", institutionService.allInstitution());
         return "institution";
     }
@@ -68,7 +69,7 @@ public class DonationFormController {
     public String institutionChoose(@RequestParam(name = "institutionId") String institutionId, ModelMap modelMap) {
         LOGGER.info("quantityChoose()");
         modelMap.addAttribute(ATTRIBUTE_INSTITUTION, institutionId);
-        String quantity = (String) modelMap.getAttribute(ATTRIBUTE_QUNATITY);
+        String quantity = (String) modelMap.getAttribute(ATTRIBUTE_QUANTITY);
         LOGGER.info("chosen Quantity: " + quantity);
         return "donationDetails";
     }
@@ -76,7 +77,7 @@ public class DonationFormController {
     @PostMapping(value = "/donationdetails")
     public String donationDetailsProvide(ModelMap modelMap, @ModelAttribute DonationModel donationModel) {
         LOGGER.info("donationDetailsProvide(" + donationModel + ")");
-        String quantityAttribute = (String) modelMap.getAttribute(ATTRIBUTE_QUNATITY);
+        String quantityAttribute = (String) modelMap.getAttribute(ATTRIBUTE_QUANTITY);
         donationModel.setQuantity(Integer.valueOf(quantityAttribute));
         LOGGER.info("donation Model : " + donationModel);
         modelMap.addAttribute(ATTRIBUTE_DONATIONDETAILS, donationModel);
@@ -101,12 +102,14 @@ public class DonationFormController {
         return "endform";
     }
 
-    @PostMapping(value = "/endform")
-    public String endFormView(ModelMap modelMap) {
+    @PostMapping(value = "/endform/{id}")
+    public String endFormView(ModelMap modelMap , Model model , @PathVariable Long id) {
         LOGGER.info("endFormView()");
         DonationModel donationDetails = (DonationModel) modelMap.getAttribute(ATTRIBUTE_DONATIONDETAILS);
+
+        model.addAttribute("acceptcategory" , donationFormService.findById(id));
         LOGGER.info("chosen donationDetails: " + donationDetails);
-        return "category";
+        return "endform";
     }
 
 }

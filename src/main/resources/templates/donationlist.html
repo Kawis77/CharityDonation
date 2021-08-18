@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Donation list</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container m2">
+    <h1>Donation list</h1>
+    <table border="1" class="table table striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Donation Zip-Code </th>
+            <th>Donation Date</th>
+            <th>Donation quantity</th>
+            <th>Details</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="donations : ${allDonationView}">
+            <td th:text="${donations.zipCode}"></td>
+            <td th:text="${donations.pckUpDate}"></td>
+            <td th:text="${donations.quantity}"></td>
+            <td> <a th:href="@{/onedonation/{id}(id=${donations.id})}" } class="btn  btn-primary">Details<a/>
+
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>
