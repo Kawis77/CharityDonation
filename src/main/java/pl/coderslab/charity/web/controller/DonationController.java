@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.dao.entity.DonationEntity;
 import pl.coderslab.charity.dao.entity.InstitutionEntity;
 import pl.coderslab.charity.service.DonationService;
@@ -67,10 +68,28 @@ public class DonationController {
     @GetMapping(value = "/onedonation/{id}")
     public String oneDonationView(Model model, @PathVariable Long id) {
         LOGGER.info("oneDonationView");
-        model.addAttribute("viewAlldonation" , donationService.allDonation());
+        model.addAttribute("viewAlldonation", donationService.allDonation());
         Optional<DonationEntity> optionalInstitutionEntity = donationService.findDonationById(id);
         DonationEntity donationEntity = optionalInstitutionEntity.orElseThrow(() -> new NoSuchElementException());
-        model.addAttribute("oneDonation" , donationEntity);
+        model.addAttribute("oneDonation", donationEntity);
+        LOGGER.info("oneDonation" + donationEntity);
         return "onedonation";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String donationDeleteView(Model model, @PathVariable Long id) {
+        Optional<DonationEntity> donationEntity = donationService.findDonationById(id);
+        DonationEntity donationEntity1 = donationEntity.orElseThrow(() -> new NoSuchElementException());
+        model.addAttribute("onedonation", donationEntity1);
+        return "/deletedonation";
+    }
+
+    @PostMapping(value = "/delete/{id}")
+    public String donationDelete(@PathVariable Long id) {
+        LOGGER.info("donationDelete");
+        Optional<DonationEntity> donationEntity = donationService.findDonationById(id);
+        DonationEntity donationEntity1 = donationEntity.orElseThrow(() -> new NoSuchElementException());
+        donationService.removeDonation(donationEntity1);
+        return "redirect:/list";
     }
 }

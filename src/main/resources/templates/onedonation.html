@@ -23,6 +23,7 @@
             <th>Category</th>
             <th>Institution</th>
             <th>Comment</th>
+            <th>Delete</th>
 
 
         </tr>
@@ -40,6 +41,7 @@
             </td>
             <td th:text="${donations.institution}"></td>
             <td th:text="${donations.pickUpComment}"></td>
+            <td><a th:href="@{/delete/{id}(id=${oneDonation.id})}" class="btn btn-danger">Delete<a/></th>
 
 
 

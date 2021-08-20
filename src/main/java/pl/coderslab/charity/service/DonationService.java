@@ -9,6 +9,7 @@ import pl.coderslab.charity.service.mapper.DonationMapper;
 import pl.coderslab.charity.web.model.DonationModel;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -63,6 +64,11 @@ public class DonationService {
     public Optional<DonationEntity> findDonationById(Long id) {
         LOGGER.info("find Donation by Id ()");
         return donationRepository.findById(id);
+
+    }
+
+    public void removeDonation(DonationEntity donationEntity) {
+        donationRepository.delete(donationEntity);
 
     }
 }

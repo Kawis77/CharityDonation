@@ -28,10 +28,6 @@ public class DonationFormService {
 
     }
 
-    public void remove(Long id){
-        donationRepository.deleteById(id);
-    }
-
     public Optional<DonationEntity> findById(Long id){
         return donationRepository.findById(id);
     }

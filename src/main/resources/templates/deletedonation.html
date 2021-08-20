@@ -1,0 +1,15 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete donation</title>
+</head>
+<body>
+<form method="POST" th:action="@{/delete/{id}(id=${onedonation.id})}" th:object="${onedonation}">
+    <p>You wany delete this donation ?</p>
+    <p>
+        <input th:type="hidden" th:name="${id}" th:value="${onedonation.id}"/>
+        <a href="/song/list">No</a><button th:type="submit">Yes</button>
+    </p>
+</form>
+</body>
+</html>
