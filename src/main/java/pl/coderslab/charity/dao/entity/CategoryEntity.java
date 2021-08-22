@@ -6,16 +6,13 @@ import java.util.List;
 @Entity
 @Table(name = "category")
 
-
 public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-
+    private Long id;
 
     private String name;
-
 
     public CategoryEntity(Long id, String name) {
         this.id = id;
@@ -41,8 +38,6 @@ public class CategoryEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
 }
 

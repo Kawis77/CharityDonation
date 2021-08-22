@@ -37,7 +37,6 @@ public class DonationService {
 
     public Long count(DonationModel donationModel) {
         LOGGER.info("Count donation");
-//        DonationEntity donationEntity = donationMapper.from(donationModel);
         Long count = donationRepository.sumQuantities();
         return count;
 
