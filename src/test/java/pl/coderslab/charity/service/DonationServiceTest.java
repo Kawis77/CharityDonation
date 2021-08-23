@@ -4,9 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.coderslab.charity.dao.entity.CategoryEntity;
 import pl.coderslab.charity.dao.entity.DonationEntity;
-import pl.coderslab.charity.dao.entity.InstitutionEntity;
 import pl.coderslab.charity.service.mapper.DonationMapper;
 import pl.coderslab.charity.web.model.DonationModel;
 
@@ -17,12 +15,9 @@ class DonationServiceTest {
     private DonationService donationService;
 
     @Test
-    void givenDonationServiceWhenUserThenDonationInDB(){
+    void givenDonationServiceWhenUserThenDonationInDB() {
         //given
-        DonationModel donationModel = new DonationModel();
         DonationMapper donationMapper = new DonationMapper();
-        CategoryEntity categoryEntity = new CategoryEntity();
-        InstitutionEntity institutionEntity = new InstitutionEntity();
         DonationEntity donationEntity = new DonationEntity();
         donationEntity.setId(1L);
         donationEntity.setZipCode("22");
@@ -33,10 +28,10 @@ class DonationServiceTest {
 
         //when
         DonationModel donationModel1 = donationMapper.from(donationEntity);
-        donationService.create(donationModel1);
+       DonationModel donationModel =  donationService.create(donationModel1);
 
         //then
-        Assertions.assertNotNull(donationModel1 , "Is not null");
+        Assertions.assertNotNull(donationModel, "Is not null");
 
     }
 }
