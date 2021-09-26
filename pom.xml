@@ -65,7 +65,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency><dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>3.19.0</version>
+        <scope>test</scope>
+    </dependency>
+
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
@@ -84,6 +90,7 @@
             <version>5.7.1</version>
             <scope>test</scope>
         </dependency>
+
 
     </dependencies>
 

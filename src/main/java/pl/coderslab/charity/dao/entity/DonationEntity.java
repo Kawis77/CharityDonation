@@ -23,6 +23,9 @@ public class DonationEntity {
     @ManyToMany
     private List<CategoryEntity> categoryEntity = new ArrayList<>();
 
+    public DonationEntity(long l) {
+    }
+
     public List<CategoryEntity> getCategoryEntity() {
         return categoryEntity;
     }
