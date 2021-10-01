@@ -46,12 +46,11 @@ class DonationServiceSpringTest {
     }
 
     @Test
-    public void givenDonationList_whenCheckList_thanSum() {
+    public void givenDonationList_whenAllDonation_thanCheckSum() {
         //given
         DonationModel donationModel = new DonationModel();
         donationModel.setQuantity(12);
         donationModel.setStreet("ABC");
-
 
         //when
         DonationModel createNewDonation = donationService.create(donationModel);
@@ -63,4 +62,17 @@ class DonationServiceSpringTest {
     }
 
 
+    @Test
+    void givenDonationModel_whenCreateAndCount_thanSumQuantitiesIsCorrect(){
+        //given
+        DonationModel donationModel = new DonationModel();
+        donationModel.setQuantity(25);
+
+        //when
+        DonationModel createNewDonation = donationService.create(donationModel);
+        Long sumOfQuantities = donationService.count(createNewDonation);
+
+        //than
+        Assertions.assertEquals(25 , sumOfQuantities);
+    }
 }
