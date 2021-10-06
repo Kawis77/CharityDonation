@@ -3,13 +3,7 @@ package pl.coderslab.charity.service.mapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.coderslab.charity.dao.entity.DonationEntity;
-import pl.coderslab.charity.dao.repository.DonationRepository;
-import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.web.model.DonationModel;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Optional;
 
 class DonationMapperTest {
 

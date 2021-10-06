@@ -11,7 +11,7 @@ import pl.coderslab.charity.web.model.DonationModel;
 import java.util.List;
 
 @SpringBootTest
-class DonationServiceSpringTest {
+class DonationServiceSpringIntegrationTest {
 
     @Autowired
     private DonationService donationService; //private = specyfikator dostepu / hermetyzowanie
@@ -41,8 +41,10 @@ class DonationServiceSpringTest {
         DonationModel createdDonationModel = donationService.create(donationModel);
         DonationEntity donationEntity1 = donationMapper.from(createdDonationModel);
         donationService.removeDonation(donationEntity1);
+        List<DonationEntity> donationEntities = donationService.allDonation();
         //than
-        Assertions.assertNull(donationEntity1.getId(), "is not null");
+        Assertions.assertEquals(0,donationEntities.size(), "List is not empty");
+
     }
 
     @Test
@@ -70,9 +72,12 @@ class DonationServiceSpringTest {
 
         //when
         DonationModel createNewDonation = donationService.create(donationModel);
-        Long sumOfQuantities = donationService.count(createNewDonation);
+        donationService.create(DonationModel.builder().quantity(15).build());
+        Long sumOfQuantities = donationService.count();
+//        List<DonationEntity> donationEntitiesList = donationService.allDonation();
 
         //than
-        Assertions.assertEquals(25 , sumOfQuantities);
+        Assertions.assertEquals(40 , sumOfQuantities);
+//        Assertions.assertEquals(1, donationEntitiesList.size(), "Expect diffrent value");
     }
 }

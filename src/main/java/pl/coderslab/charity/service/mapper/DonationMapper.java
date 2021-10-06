@@ -2,8 +2,6 @@ package pl.coderslab.charity.service.mapper;
 
 import org.springframework.stereotype.Component;
 import pl.coderslab.charity.dao.entity.DonationEntity;
-import pl.coderslab.charity.dao.repository.DonationRepository;
-import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.web.model.DonationModel;
 
 @Component

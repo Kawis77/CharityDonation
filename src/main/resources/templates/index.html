@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,17 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<nav class="menu">
-        <a href="#">Donation</a>
+<header>
+    <nav class="navbar navbar-dark bg-dark navbar-expand">
+        <a class="navbar-brand" href="#"><img src="https://i.pinimg.com/736x/d5/24/22/d5242243faec7ed279175bdb596779c1.jpg" width="50" height="50"
+        class="d-inline-block mr-1 alling-bottom" alt=""> Charity.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <a href="#">O nas</a>
+        <div class="collapse navbar-collapse" id="mainmenu">
 
-        <a href="#">O nas</a>
+            <ul class="navbar-nav mr-auto">
 
-</nav>
+            <li class="nav-item">
+                <a class="nav-link" href="#" >Home Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" >New Donation</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" >Institution</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Institution 1</a>
+                    <a class="dropdown-item" href="#">Institution 2</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Institution 3</a>
+                    <a class="dropdown-item" href="#">Institution 3</a>
 
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" >All Donations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" >Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" >Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" >Logout</a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    </nav>
+
+</header>
 </body>
 </html>

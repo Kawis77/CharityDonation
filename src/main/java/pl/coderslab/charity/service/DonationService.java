@@ -33,7 +33,7 @@ public class DonationService {
         return savedDonationModel;
     }
 
-    public Long count(DonationModel donationModel) {
+    public Long count() {
         LOGGER.info("Count donation");
         Long count = donationRepository.sumQuantities();
         return count;
@@ -66,6 +66,8 @@ public class DonationService {
 
     public void removeDonation(DonationEntity donationEntity) {
         donationRepository.delete(donationEntity);
+
+        //ta metoda powinna przyjmować model nie encje
 
     }
 }

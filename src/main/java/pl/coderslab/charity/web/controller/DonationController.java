@@ -35,7 +35,7 @@ public class DonationController {
     @GetMapping("/")
 
     public String homePageView(Model model, DonationModel donationModel) {
-        model.addAttribute("sumdonation", donationService.count(donationModel));
+        model.addAttribute("sumdonation", donationService.count());
         model.addAttribute("sumquantity", donationService.sumQuantity());
         model.addAttribute("allinstitution", institutionService.allInstitution());
 
@@ -46,7 +46,7 @@ public class DonationController {
     @GetMapping(value = "/count")
     public String countView(Model model, DonationModel donationModel) {
         LOGGER.info("categoryView()");
-        model.addAttribute("count", donationService.count(donationModel));
+        model.addAttribute("count", donationService.count());
 
         return "count";
     }
