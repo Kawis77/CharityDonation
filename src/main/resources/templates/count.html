@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liczba dotacji</title>
+    <title>Sum of donations</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -32,10 +32,10 @@
                     <a class="nav-link" href="/countquantity" >All Donations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" >About us</a>
+                    <a class="nav-link" href="/aboutus" >About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" >Contact</a>
+                    <a class="nav-link" href="/contact" >Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/list" >Login Admin</a>
@@ -56,7 +56,7 @@
 <form method="POST" th:action="@{/category}" th:object="${count}">
 
 
-    <a>Liczba dotacji</a>
+    <a>Number of donations</a>
     <div th:each="count : ${count}">
         <span th:text="${count}"></span>
     </div>

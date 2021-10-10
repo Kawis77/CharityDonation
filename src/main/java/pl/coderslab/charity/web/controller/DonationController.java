@@ -34,13 +34,27 @@ public class DonationController {
 
     @GetMapping("/")
 
-    public String homePageView(Model model, DonationModel donationModel) {
+    public String homePageView(Model model) {
         model.addAttribute("sumdonation", donationService.count());
         model.addAttribute("sumquantity", donationService.sumQuantity());
         model.addAttribute("allinstitution", institutionService.allInstitution());
 
         return "index";
 
+    }
+
+    @GetMapping(value = "/contact")
+    public String contactView(Model model) {
+        LOGGER.info("conatactView()");
+
+        return "contact";
+    }
+
+    @GetMapping(value = "/aboutus")
+    public String aboutUsView(Model model) {
+        LOGGER.info("aboutUsView()");
+
+        return "aboutus";
     }
 
     @GetMapping(value = "/count")
