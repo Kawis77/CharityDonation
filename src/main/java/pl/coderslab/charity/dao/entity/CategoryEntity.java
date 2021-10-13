@@ -3,26 +3,21 @@ package pl.coderslab.charity.dao.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category")
-
-
+@Table(name = "CATEGORIES")
 public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-
+    private Long id;
 
     private String name;
 
+    public CategoryEntity() {
+    }
 
     public CategoryEntity(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public CategoryEntity() {
-
     }
 
     public Long getId() {
@@ -41,5 +36,12 @@ public class CategoryEntity {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "CategoryEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
 
