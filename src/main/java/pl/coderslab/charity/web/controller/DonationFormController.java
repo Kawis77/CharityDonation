@@ -41,7 +41,7 @@ public class DonationFormController {
     }
 
     @GetMapping(value = "/category")
-    public String categoryView(ModelMap modelMap, Model model) {
+    public String categoryView(Model model) {
         LOGGER.info("categoryView()");
         List<CategoryEntity> allCategories = categoryService.allCategory();
         allCategories.sort(Comparator.comparing(CategoryEntity::getId));
