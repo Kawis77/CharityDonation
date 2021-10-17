@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <header>
     <nav class="navbar navbar-dark bg-dark navbar-expand">
-        <a class="navbar-brand" href="/"><img src="https://i.pinimg.com/736x/d5/24/22/d5242243faec7ed279175bdb596779c1.jpg" width="50" height="50"
-                                              class="d-inline-block mr-1 alling-bottom" alt=""> Charity.com</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
+        <a class="navbar-brand" href="/"><img
+                src="https://i.pinimg.com/736x/d5/24/22/d5242243faec7ed279175bdb596779c1.jpg" width="50" height="50"
+                class="d-inline-block mr-1 alling-bottom" alt=""> Charity.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainmenu"
+                aria-controls="mainmenu" aria-expanded="false" aria-label="Przełącznik nawigacji">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -19,27 +20,26 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/" >Home Page</a>
+                    <a class="nav-link" href="/">Home Page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/form/category" >New Donation</a>
+                    <a class="nav-link" href="/form/category">New Donation</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/institutionview" >Institution</a>
+                    <a class="nav-link" href="/institutionview">Institution</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/countquantity" >All Donations</a>
+                    <a class="nav-link" href="/countquantity">All Donations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/aboutus" >About us</a>
+                    <a class="nav-link" href="/aboutus">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/emailsend" >Contact</a>
+                    <a class="nav-link" href="/emailsend">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/list" >Login Admin</a>
+                    <a class="nav-link" href="/list">Login Admin</a>
                 </li>
-
 
 
             </ul>
@@ -49,22 +49,59 @@
     </nav>
 
 </header>
-<h1>Adres and pick up details</h1>
-<div>
+
+<div class="container">
+    <h1>Adres and pick up details</h1>
     <form action="/form/donationdetails" method="post">
-        <label for="street">Street</label>
-        <input id="street" name="street">
-        <label for="city">City</label>
-        <input id="city" name="city">
-        <label for="zipCode">ZIP CODE</label>
-        <input id="zipCode" name="zipCode">
-        <label for="pckUpDate">Pick Up Date</label>
-        <input type="date" id="pckUpDate" name="pckUpDate">
-        <label for="pickUpTime">Pick Up Time</label>
-        <input type="time" id="pickUpTime" name="pickUpTime">
-        <label for="pickUpComment">Pick Up Comment</label>
-        <input id="pickUpComment" name="pickUpComment">
-        <button type="submit">Dalej...</button>
+        <table border="0" width="80%">
+            <tr>
+                <td>
+                    <label for="street">Street</label>
+                    <input id="street" name="street" size="40">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="city">City</label>
+                    <input id="city" name="city" size="40">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="zipCode">ZIP CODE</label>
+                    <input id="zipCode" name="zipCode" size="30">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pckUpDate">Pick Up Date</label>
+                    <input type="date" id="pckUpDate" name="pckUpDate" size="40">
+                </td>
+            </tr>
+            <td>
+                <label for="pickUpTime">Pick Up Time</label>
+                <input type="time" id="pickUpTime" name="pickUpTime">
+            </td>
+            </tr>
+            <tr>
+                <td>Pick Up Comment:</td>
+            </tr>
+            <tr>
+
+                <td>
+                    <label for="pickUpComment">
+                        <textarea cols="50" rows="10" name="pickUpComment" id="pickUpComment">
+            </textarea>
+                    </label>
+                </td>
+            </tr>
+            <!--            <input id="pickUpComment" name="pickUpComment">-->
+<tr>
+    <td colspan="2" align="center">
+            <button type="submit">Further</button>
+    </td>
+</tr>
+        </table>
     </form>
 </div>
 </body>

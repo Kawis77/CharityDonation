@@ -3,7 +3,7 @@ package pl.coderslab.charity.dao.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CATEGORIES")
+@Table(name = "category")
 public class CategoryEntity {
 
     @Id
