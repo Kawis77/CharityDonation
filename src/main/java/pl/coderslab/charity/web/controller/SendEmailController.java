@@ -18,9 +18,9 @@ import pl.coderslab.charity.service.EmailService;
         }
 
         @PostMapping("/emailsend")
-        public String SendEmailPost(@RequestParam String to , @RequestParam String topic , @RequestParam String text) {
+        public String SendEmailPost(@RequestParam String from , @RequestParam String topic , @RequestParam String text) {
 
-        emailService.SendEmail(to , topic , text);
+        emailService.SendEmail(from , topic , text);
 
             return "email";
         }
