@@ -19,6 +19,8 @@ Admin panel
 
 Editing a donation
 
+Donation list
+
 Removal of a donation
 
 Adding Institution
