@@ -36,11 +36,8 @@ public class SeciurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/form/category").permitAll()
-                .antMatchers("/form/quantity").permitAll()
-                .antMatchers("/form/institution").permitAll()
-                .antMatchers("/form/donationdetails").permitAll()
-                .antMatchers("/form/endform/{id}").permitAll()
+                .antMatchers("/*").permitAll()
+                .antMatchers("/form/*").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/users/").permitAll()

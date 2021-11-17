@@ -16,12 +16,12 @@ public class InstitutionService {
         this.institutionRepository = institutionRepository;
     }
 
-    public List<InstitutionEntity> allInstitution(){
+    public List<InstitutionEntity> allInstitution() {
         return institutionRepository.findAll();
 
     }
 
-    public InstitutionEntity getById(Long id){
+    public InstitutionEntity getById(Long id) {
         return institutionRepository.getById(id);
     }
 }

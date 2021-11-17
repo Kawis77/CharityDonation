@@ -103,11 +103,11 @@ public class DonationFormController {
     }
 
     @PostMapping(value = "/endform/{id}")
-    public String endFormView(ModelMap modelMap , Model model , @PathVariable Long id) {
+    public String endFormView(ModelMap modelMap, Model model, @PathVariable Long id) {
         LOGGER.info("endFormView()");
         DonationModel donationDetails = (DonationModel) modelMap.getAttribute(ATTRIBUTE_DONATIONDETAILS);
 
-        model.addAttribute("acceptcategory" , donationFormService.findById(id));
+        model.addAttribute("acceptcategory", donationFormService.findById(id));
         LOGGER.info("chosen donationDetails: " + donationDetails);
         return "endform";
     }

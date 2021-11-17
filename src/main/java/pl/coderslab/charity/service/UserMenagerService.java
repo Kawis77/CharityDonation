@@ -1,4 +1,5 @@
 package pl.coderslab.charity.service;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ public class UserMenagerService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(UserModel user){
+    public void registerUser(UserModel user) {
         UserEntity userEntity = userMapper.form(user);
         String encodePassword = passwordEncoder.encode(user.getPassword());
         userEntity.setPassword(encodePassword);
