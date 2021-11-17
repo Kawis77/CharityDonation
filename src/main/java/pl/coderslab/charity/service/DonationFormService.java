@@ -28,7 +28,7 @@ public class DonationFormService {
 
     }
 
-    public Optional<DonationEntity> findById(Long id){
+    public Optional<DonationEntity> findById(Long id) {
         return donationRepository.findById(id);
     }
 

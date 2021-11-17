@@ -22,7 +22,7 @@ public class CategoryService {
 
     }
 
-    public CategoryEntity getById(Long id){
+    public CategoryEntity getById(Long id) {
         return categoryRepository.getById(id);
     }
 }

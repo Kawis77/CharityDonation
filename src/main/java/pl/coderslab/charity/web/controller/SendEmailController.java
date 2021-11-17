@@ -7,21 +7,21 @@ import pl.coderslab.charity.service.EmailService;
 
 
 @Controller
-    public class SendEmailController {
+public class SendEmailController {
 
-        @Autowired
-        private EmailService emailService;
+    @Autowired
+    private EmailService emailService;
 
-        @GetMapping("/emailsend")
-        public String SendEmailGet(){
-            return "email";
-        }
-
-        @PostMapping("/emailsend")
-        public String SendEmailPost(@RequestParam String from , @RequestParam String topic , @RequestParam String text) {
-
-        emailService.SendEmail(from , topic , text);
-
-            return "email";
-        }
+    @GetMapping("/emailsend")
+    public String SendEmailGet() {
+        return "email";
     }
+
+    @PostMapping("/emailsend")
+    public String SendEmailPost(@RequestParam String from, @RequestParam String topic, @RequestParam String text) {
+
+        emailService.SendEmail(from, topic, text);
+
+        return "email";
+    }
+}
