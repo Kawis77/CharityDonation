@@ -10,9 +10,7 @@ import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationFormService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.web.model.DonationModel;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
