@@ -1,12 +1,10 @@
 package pl.coderslab.charity.web.controller;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.dao.entity.DonationEntity;
-import pl.coderslab.charity.dao.entity.InstitutionEntity;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.web.model.DonationModel;
@@ -27,13 +25,8 @@ public class DonationController {
         this.institutionService = institutionService;
     }
 
-//    public void create(DonationModel donationModel) {
-//        LOGGER.info("create(" + donationModel + ")");
-//        donationService.create(donationModel);
-//    }
 
     @GetMapping("/")
-
     public String homePageView(Model model) {
         model.addAttribute("sumdonation", donationService.count());
         model.addAttribute("sumquantity", donationService.sumQuantity());
@@ -44,7 +37,7 @@ public class DonationController {
     }
 
     @GetMapping(value = "/contact")
-    public String contactView(Model model) {
+    public String contactView() {
         LOGGER.info("conatactView()");
 
         return "contact";
